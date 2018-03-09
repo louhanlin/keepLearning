@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>九宫格</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				width: 100%;
+			}
+			.container{
+				display: flex;
+				display: -webkit-flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 170px;
+				flex-wrap: wrap;
+				margin: 100px auto 0 auto;
+			}
+			.innerColorBox{
+				height:50px ;
+				width: 50px;
+				background: orange;	
+				margin-bottom: 10px;
+				border-radius: 5px;
+			}
+			.button{
+				height: 30px;
+				line-height: 1;
+				width: 170px;
+				cursor: pointer;
+				background: orange;
+				margin:10px auto ;
+				color: #FFFFFF;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.button:hover{
+				background: navajowhite;
+				color: #007788;
+			}
+		</style>
+		<script type="text/javascript">
+			let time ;
+			function flash(){
+				let boxes = document.getElementsByClassName('innerColorBox');
+				let colorArray =[];
+				let IndexArr = [0,1,2,3,4,5,6,7,8];
+				for (let i = 0;i<3;i++) {
+					let str = 'rgb('+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+','+Math.floor(Math.random()*256)+')';   
+					let Index = Math.floor(Math.random()*IndexArr.length);
+					boxes[IndexArr[Index]].style.backgroundColor = str;
+					IndexArr.splice(Index,1)
+				};
+				
+				for (let i = 0;i<6;i++) {
+					boxes[IndexArr[i]].style.backgroundColor = 'orange';
+				};
+			};
+			function start(){
+				clearInterval(time);
+				time = setInterval(function(){
+					flash();
+				},50);
+			};
+			function endFlash(){
+				clearInterval(time);
+			};
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+			<div class="innerColorBox"></div>
+		</div>
+		<div class="button" onClick="start()">开始闪</div>
+		<div class="button" onclick="endFlash()">结束闪</div>
+		
+	</body>
+</html>
